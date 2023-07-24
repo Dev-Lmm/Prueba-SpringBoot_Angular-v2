@@ -1,0 +1,59 @@
+<div class="profile-container">
+  <div class="profile-info">
+    <h1>{{ title }}</h1>
+    <div class="form-container">
+      <form>
+        <div class="form-group">
+          <label for="name">Nombre:</label>
+          <div>
+            <input type="text" id="name" name="name" [(ngModel)]="profile.name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Apellido:</label>
+          <div>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="profile.lastName">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthdate">Fecha de nacimiento:</label>
+          <div>
+            <input type="text" id="birthdate" name="birthdate" [(ngModel)]="profile.birthdate">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneNumber">Numero de Telefono:</label>
+          <div>
+            <input type="text" id="phoneNumber" name="phoneNumber" [(ngModel)]="profile.phoneNumber">
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <button role="button" [routerLink]="['/user/create']" *ngIf="!profile.id else elseBlock">Ir a Registrar Usuario</button>
+            <ng-template #elseBlock>
+              <button role="button" (click)='update()'>Guardar</button>
+              <button role="button" [routerLink]="['/post/create']" >Crear publicacion</button>
+            </ng-template>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="comments-container">
+    <h2>Publicaciones:</h2>
+    <div *ngFor="let post of profile.posts">
+      <h2>{{ post.title }}</h2>
+      <p>ID: {{ post.id }}</p>
+      <p>{{ post.text }}</p>
+      <p>{{ post.publicationDate }}</p>
+      <div *ngFor="let comment of post.comments">
+        <p>{{ comment.text }}</p>
+      </div>
+      <div>
+        <button role="button" [routerLink]="['/comment/create']">Crear comentario</button>
+      </div>
+    </div>
+  </div>
+
+</div>

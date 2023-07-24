@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="header">{{tittle}}</div>
+  <div class="content">
+    <h5>Listado de usuarios</h5>
+    <div class="create-btn">
+      <button type="button" [routerLink]="['/user/create']">Crear Cliente</button>
+    </div>
+    <div class="create-btn">
+      <button type="button" (click)="login()" >Login</button>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>apellido</th>
+        <th>telefono</th>
+        <th>fecha de nacimiento</th>
+        <th>Modificar perfil</th>
+        <th>Editar Usuario</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let profile of profiles">
+        <td>{{ profile.id }}</td>
+        <td>{{ profile.name }}</td>
+        <td>{{ profile.lastName }}</td>
+        <td>{{ profile.phoneNumber }}</td>
+        <td>{{ profile.birthdate }}</td>
+        <td>
+          <button type="button" name="editar perfil" [routerLink]="['/user/profile', profile.id]">editar perfil</button>
+        </td>
+        <td>
+          <button type="button" name="editar usuario" [routerLink]="['/user/config', profile.id]">editar usuario</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
